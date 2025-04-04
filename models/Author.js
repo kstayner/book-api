@@ -9,11 +9,6 @@ const authorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
-  lastName: {
-    type: String,
-    required: false,
-  },
 });
 
 const Author = mongoose.model('Author', authorSchema);
