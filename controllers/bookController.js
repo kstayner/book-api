@@ -47,8 +47,8 @@ exports.getBooksByAuthor = async (req, res) => {
 // Update a book
 exports.updateBook = async (req, res) => {
   try {
-    const { title, publication_year, author_id } = req.body;
-    const updatedBook = await bookService.updateBook(req.params.id, title, publication_year, author_id);
+    const updatedFields = req.body;
+    const updatedBook = await bookService.updateBook(req.params.id, updatedFields);
     if (!updatedBook) {
       return res.status(404).json({ message: 'Book not found' });
     }
