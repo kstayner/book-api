@@ -32,3 +32,17 @@ exports.updateBook = async (id, title, publication_year, author_id) => {
 exports.deleteBook = async (id) => {
   return await Book.findByIdAndDelete(id);
 };
+
+exports.patchBook = async (id, updateFields) => {
+  // Filter out undefined fields
+  const fieldsToUpdate = {};
+  if (updateFields.title !== undefined) fieldsToUpdate.title = updateFields.title;
+  if (updateFields.publication_year !== undefined) fieldsToUpdate.publication_year = updateFields.publication_year;
+  if (updateFields.author_id !== undefined) {
+    const author = await Author.findById(updateFields.author_id);
+    if (!author) throw new Error('Author not found');
+    fieldsToUpdate.author_id = updateFields.author_id;
+  }
+
+  return await Book.findByIdAndUpdate(id, fieldsToUpdate, { new: true });
+};
