@@ -27,6 +27,7 @@ const authorService = require('../services/authorService');
 // add comment 25
 // add comment 26
 exports.createAuthor = async (req, res) => {
+// add comment 31
   try {
     const { name, nationality } = req.body;
     const newAuthor = await authorService.createAuthor(name, nationality);
