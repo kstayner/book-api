@@ -1,3 +1,4 @@
+// Author schema definition
 const mongoose = require('mongoose');
 
 const authorSchema = new mongoose.Schema({
